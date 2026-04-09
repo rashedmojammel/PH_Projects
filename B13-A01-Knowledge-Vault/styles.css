@@ -1,0 +1,372 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.font-Inter {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+
+}
+
+/* =========================Navbar========================= */
+.btn {
+
+    background-color: #30B868;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px rgba(138, 137, 137, 0.634);
+}
+
+nav {
+    width: 85%;
+    max-width: 1316px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+nav .header-logo {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 34px 0px 34px 0px;
+    gap: 51px;
+    list-style-type: none;
+}
+.menu:hover
+{
+    cursor: pointer;
+}
+
+/* ======================banner1===================== */
+#banner {
+    background-image: url("assets/hero-bg.png");
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.banner-content {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 120px;
+    color: white;
+    text-align: center;
+
+}
+
+.banner-content .Upper-content {
+
+    display: inline-block;
+    font-size: 16px;
+    padding: 8px 15px 8px 35px;
+    border-radius: 20px;
+    color: #30B868;
+    background-color: white;
+    justify-content: center;
+    margin-bottom: 16px;
+    background-image: url("./assets/Group\ 5.png");
+    background-repeat: no-repeat;
+    background-position: 10px;
+    background-size: 20px;
+}
+
+.banner-content .content-btn {
+    display: flex;
+    gap: 16px;
+    list-style-type: none;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.banner-content h1 {
+    font-weight: bold;
+    font-size: 65px;
+
+}
+
+.banner-content #green {
+    font-weight: bold;
+    justify-content: center;
+    color: #30B868;
+    margin-bottom: 16px;
+
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    align-items: center;
+}
+
+.banner-content p {
+    text-align: center;
+    font-size: 16px;
+}
+
+.btn2 {
+    padding: 17px 40px;
+    font-size: 16px;
+    margin-top: 32px;
+    background-color: #30B868;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap : 10px;
+    box-shadow: 2px 2px 15px rgba(45, 44, 44, 0.634);
+}
+
+.btn3 {
+    padding: 16px 46px;
+    font-size: 16px;
+    margin-top: 32px;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border-color: white;
+    border-radius: 5px;
+    background-image: url("./assets/Play.png");
+    background-repeat: no-repeat;
+    background-position: 10px;
+    background-size: 28px;
+    box-shadow: 2px 2px 15px rgba(45, 44, 44, 0.634);
+
+}
+
+/* ========================banner2=================== */
+#banner2 {
+    padding: 80px 0;
+    background-color: #FFFFFF;
+}
+
+#banner2 .ban2-headings {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+#banner2 .ban2-headings h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+#banner2 .ban2-headings p {
+    font-size: 14px;
+    color: #6b6f7a;
+}
+
+.bannerNotes {
+    max-width: 1300px;
+    margin: 40px auto 0 auto;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.bannerNotes .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px 10px 20px 10px;
+    margin : 15px;
+    box-shadow: 8px 12px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.bannerNotes .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #F95555;
+    /* adjust per icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.card h3{
+    /* padding-top: 10px; */
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.card  p{
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =================banner3================= */
+#banner3 {
+    /* max-width: 1300px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 120px;
+    background-color: #FFFFFF;
+}
+
+#banner3 .rightside-content {
+    padding: 101px 0px 101px 60px;
+}
+
+#banner3 .rightside-content #problem {
+    color: #30B868;
+    font-size: 16px;
+    padding-bottom: 16px;
+}
+
+.rightside-content h1 {
+    font-size: 48px;
+    color: #001931;
+
+}
+
+.rightside-content #motive {
+    text-align: left;
+    padding: 16px 0px 40px 0px;
+    font-size: 16px;
+    color: #627382;
+}
+
+.rightside-content #points li {
+    list-style-type: none;
+    padding-bottom: 16px;
+    background-image: url(./assets/CheckCircle.png);
+    background-repeat: no-repeat;
+    padding-left: 25px;
+    color: black;
+}
+
+/* ======================banner4========================== */
+#banner4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 120px 120px 120px;
+    background-color: #F7F6F2;
+    width: 1300px;
+    margin: 0 auto;
+
+}
+.btn4 {
+
+    background-color: #30B868;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 16px 35px 16px 20px;
+    border: none;
+    border-radius: 5px;
+    background-image: url(./assets/ArrowRight.png);
+    /* background-position: right; */
+    background-size: 20px;
+    background-position: 155px;
+    background-repeat: no-repeat; 
+    box-shadow: #FFFFFF;
+    box-shadow: 2px 2px 15px rgba(45, 44, 44, 0.634);
+}
+.btn4:hover ,.btn:hover,.btn2:hover,.btn3:hover
+{
+    background-color: #153f02;
+    cursor: pointer;
+}
+#banner4 .upperside4 h3 {
+    padding: 80px 0px 16px 0px;
+    text-align: center;
+    font-size: 40px;
+    color: #001931;
+
+}
+
+#banner4 .upperside4 #upperside4p {
+    padding-bottom: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #627382;
+
+}
+
+#banner4 .lowerside4 {
+    text-align: center;
+    padding-bottom: 80px;
+}
+
+#banner4 .lowerside4 p {
+    padding-top: 16px;
+    color: #627382;
+}
+
+/* ==========================footer================ */
+footer {
+    background-color: #001931;
+}
+
+footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 120px 120px 80px 120px;
+
+
+}
+
+.social-links p {
+    color: white;
+    font-size: 20px;
+
+}
+.logo{
+    display: flex;
+    gap : 10px;
+}
+.logo:hover{
+    cursor: pointer;
+}
+.social-links .logo img {
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+footer .last {
+
+    border-top: 1px solid #16324a;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 0 32px 0;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Tracker — Sign In</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <!-- ============================================================
+       AUTH PAGE SHELL — all views toggled by auth.js
+       ============================================================ -->
+  <div class="auth-page page-enter">
+
+    <!-- ── Left Panel ── -->
+    <div class="auth-panel-left">
+      <div class="auth-brand">
+        <div class="auth-brand-logo">
+          <div class="auth-brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(240,237,230,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            </svg>
+          </div>
+          <span class="auth-brand-name">JobTracker</span>
+        </div>
+
+        <h2 class="auth-tagline">
+          Track every<br/>
+          <span>opportunity,</span><br/>
+          land your dream.
+        </h2>
+        <p class="auth-desc">
+          Manage all your job applications in one clean dashboard.
+          Set deadlines, track statuses, and never miss a follow-up.
+        </p>
+      </div>
+
+      <ul class="auth-features">
+        <li><span class="feat-dot"></span> Deadline reminders so you never miss a date</li>
+        <li><span class="feat-dot"></span> Kanban &amp; list views for full visibility</li>
+        <li><span class="feat-dot"></span> Dark mode &amp; CSV export built-in</li>
+        <li><span class="feat-dot"></span> Your data stays on your device, always</li>
+      </ul>
+    </div>
+
+    <!-- ── Right Panel ── -->
+    <div class="auth-panel-right">
+      <div class="auth-form-wrap">
+
+        <!-- ======================================================
+             VIEW: LOGIN
+             ====================================================== -->
+        <div id="view-login">
+          <h1 class="auth-form-title">Welcome back</h1>
+          <p class="auth-form-subtitle">
+            Don't have an account?
+            <a data-goto="register">Create one</a>
+          </p>
+
+          <form id="login-form" novalidate>
+            <div class="form-group">
+              <label class="form-label">Email address</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="login-email" type="email" placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <div class="form-error" id="login-email-err"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="login-pass" type="password" placeholder="Your password" autocomplete="current-password" />
+                <button type="button" class="input-toggle" id="toggle-login-pass">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-error" id="login-pass-err"></div>
+            </div>
+
+            <div class="auth-row">
+              <label class="checkbox-wrap">
+                <input type="checkbox" id="login-remember" />
+                Remember me
+              </label>
+              <button type="button" class="forgot-link" data-goto="forgot">Forgot password?</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Sign in
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </form>
+
+          <p class="auth-terms" style="margin-top:28px;">
+            <strong>Demo:</strong> Register a new account to get started — data is stored locally in your browser.
+          </p>
+        </div>
+
+        <!-- ======================================================
+             VIEW: REGISTER
+             ====================================================== -->
+        <div id="view-register" class="hidden">
+          <h1 class="auth-form-title">Create account</h1>
+          <p class="auth-form-subtitle">
+            Already have an account?
+            <a data-goto="login">Sign in</a>
+          </p>
+
+          <form id="register-form" novalidate>
+            <div class="form-group">
+              <label class="form-label">Full name</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="reg-name" type="text" placeholder="Jane Smith" autocomplete="name" />
+              </div>
+              <div class="form-error" id="reg-name-err"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email address</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="reg-email" type="email" placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <div class="form-error" id="reg-email-err"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="reg-pass" type="password" placeholder="Min 6 characters" autocomplete="new-password" />
+                <button type="button" class="input-toggle" id="toggle-reg-pass">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="strength-meter">
+                <div class="strength-bar"></div>
+                <div class="strength-bar"></div>
+                <div class="strength-bar"></div>
+                <div class="strength-bar"></div>
+                <div class="strength-bar"></div>
+              </div>
+              <div class="strength-label"></div>
+              <div class="form-error" id="reg-pass-err"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Confirm password</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="reg-confirm" type="password" placeholder="Repeat password" autocomplete="new-password" />
+                <button type="button" class="input-toggle" id="toggle-reg-confirm">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-error" id="reg-confirm-err"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Create account
+            </button>
+          </form>
+
+          <p class="auth-terms">
+            By creating an account you agree to our
+            <a>Terms of Service</a> and <a>Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- ======================================================
+             VIEW: FORGOT PASSWORD — Enter email
+             ====================================================== -->
+        <div id="view-forgot" class="hidden">
+          <h1 class="auth-form-title">Reset password</h1>
+          <p class="auth-form-subtitle">
+            Enter your email and we'll send a verification code.
+            <br/><a data-goto="login">Back to sign in</a>
+          </p>
+
+          <form id="forgot-form" novalidate>
+            <div class="form-group">
+              <label class="form-label">Email address</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="forgot-email" type="email" placeholder="you@example.com" />
+              </div>
+              <div class="form-error" id="forgot-email-err"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Send verification code
+            </button>
+          </form>
+        </div>
+
+        <!-- ======================================================
+             VIEW: OTP VERIFICATION
+             ====================================================== -->
+        <div id="view-otp" class="hidden">
+          <h1 class="auth-form-title">Check your email</h1>
+          <p class="auth-form-subtitle">
+            We sent a 6-digit code to your email. Enter it below.
+            (For demo, the code appears in the notification.)
+          </p>
+
+          <div class="otp-wrap">
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" />
+          </div>
+
+          <button id="verify-otp-btn" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Verify code
+          </button>
+
+          <div class="resend-timer">
+            <span id="otp-timer"></span>
+            <button id="resend-btn" disabled>Resend code</button>
+          </div>
+        </div>
+
+        <!-- ======================================================
+             VIEW: RESET PASSWORD — New password
+             ====================================================== -->
+        <div id="view-reset" class="hidden">
+          <h1 class="auth-form-title">New password</h1>
+          <p class="auth-form-subtitle">Choose a strong new password for your account.</p>
+
+          <form id="reset-form" novalidate>
+            <div class="form-group">
+              <label class="form-label">New password</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="new-pass" type="password" placeholder="Min 6 characters" />
+                <button type="button" class="input-toggle" id="toggle-new-pass">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-error" id="new-pass-err"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Confirm new password</label>
+              <div class="input-wrap">
+                <span class="input-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </span>
+                <input class="form-input" id="confirm-new-pass" type="password" placeholder="Repeat password" />
+                <button type="button" class="input-toggle" id="toggle-confirm-new-pass">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="form-error" id="confirm-new-pass-err"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Reset password
+            </button>
+          </form>
+        </div>
+
+        <!-- ======================================================
+             VIEW: SUCCESS
+             ====================================================== -->
+        <div id="view-success" class="hidden">
+          <div class="reset-success">
+            <div class="success-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h1 class="auth-form-title">Password reset!</h1>
+            <p class="auth-form-subtitle" style="margin-bottom:28px;">
+              Your password has been updated successfully. You can now sign in with your new password.
+            </p>
+            <button id="back-to-login" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Back to sign in
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script/storage.js"></script>
+  <script src="script/toast.js"></script>
+  <script src="script/auth.js"></script>
+</body>
+</html>

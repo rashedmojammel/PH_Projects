@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Tracker — Dashboard</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div id="toast-container"></div>
+
+  <!-- ============================================================
+       ADD JOB MODAL
+       ============================================================ -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Add New Job</h2>
+        <button class="modal-close" id="modal-close">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+            <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <form id="add-job-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Company *</label>
+            <input class="form-input" id="f-company" placeholder="e.g. Google" />
+            <div class="form-error" id="f-company-err"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Job Title *</label>
+            <input class="form-input" id="f-title" placeholder="e.g. Frontend Dev" />
+            <div class="form-error" id="f-title-err"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input class="form-input" id="f-location" placeholder="e.g. Remote, Dhaka" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type</label>
+            <select class="form-select" id="f-type">
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contract</option>
+              <option>Hybrid</option>
+              <option>Remote</option>
+              <option>Internship</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Salary / Range</label>
+            <input class="form-input" id="f-salary" placeholder="e.g. $80k - $120k" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Application Deadline</label>
+            <input class="form-input" id="f-deadline" type="date" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="f-desc" placeholder="Brief job description..."></textarea>
+        </div>
+      </form>
+
+      <div class="modal-footer">
+        <button class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="modal-submit">Add Job</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DASHBOARD
+       ============================================================ -->
+  <div class="wrapper page-enter">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <h1>Job Tracker</h1>
+        <p>Your applications, all in one place</p>
+      </div>
+
+      <div class="header-actions">
+        <!-- Dark mode -->
+        <button class="btn btn-ghost btn-icon" id="dark-toggle" title="Toggle dark mode">
+          <svg id="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg id="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Export CSV -->
+        <button class="btn btn-ghost" id="export-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export
+        </button>
+
+        <!-- Add Job -->
+        <button class="btn btn-primary" id="add-job-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Add Job
+        </button>
+
+        <!-- User chip / Logout -->
+        <div class="user-chip" id="user-chip" title="Click to sign out">
+          <div class="user-avatar" id="user-avatar">--</div>
+          <span id="user-name">User</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- Reminder Banner -->
+    <div class="reminder-banner hidden" id="reminder-banner">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span id="reminder-msg"></span>
+      <button class="close-reminder" id="close-reminder">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-label">Total</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-card pending">
+        <div class="stat-label">Pending</div>
+        <div class="stat-value" id="stat-pending">0</div>
+      </div>
+      <div class="stat-card interview">
+        <div class="stat-label">Interview</div>
+        <div class="stat-value" id="stat-interview">0</div>
+      </div>
+      <div class="stat-card rejected">
+        <div class="stat-label">Rejected</div>
+        <div class="stat-value" id="stat-rejected">0</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-title">Application Progress</span>
+        <span id="progress-label" style="font-size:13px;color:var(--text-muted)">0% response rate</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill fill-interview" id="bar-interview" style="width:0%"></div>
+        <div class="progress-fill fill-rejected"  id="bar-rejected"  style="width:0%"></div>
+        <div class="progress-fill fill-pending"   id="bar-pending"   style="width:100%"></div>
+      </div>
+      <div class="progress-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Interview</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>   Rejected</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Pending</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="pending">Pending</button>
+        <button class="filter-tab" data-filter="interview">Interview</button>
+        <button class="filter-tab" data-filter="rejected">Rejected</button>
+      </div>
+
+      <div class="search-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input class="search-input" id="search-input" placeholder="Search company, title, location…" />
+      </div>
+
+      <div class="view-toggle">
+        <button class="view-btn active" id="list-view-btn" title="List view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </button>
+        <button class="view-btn" id="kanban-view-btn" title="Kanban view">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="12" rx="1"/>
+          </svg>
+        </button>
+      </div>
+
+      <span class="job-count-label" id="job-count-label">0 jobs</span>
+    </div>
+
+    <!-- List View -->
+    <div id="list-view"></div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+      </svg>
+      <h3>No jobs found</h3>
+      <p>Try a different filter or add a new job</p>
+    </div>
+
+    <!-- Kanban View -->
+    <div id="kanban-view">
+      <div class="kanban-col">
+        <div class="kanban-col-header">
+          <span class="kanban-col-title"><span class="kanban-dot dot-pending"></span>Pending</span>
+          <span class="kanban-count" id="k-pending-count">0</span>
+        </div>
+        <div class="kanban-cards" id="k-pending"></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header">
+          <span class="kanban-col-title"><span class="kanban-dot dot-interview"></span>Interview</span>
+          <span class="kanban-count" id="k-interview-count">0</span>
+        </div>
+        <div class="kanban-cards" id="k-interview"></div>
+      </div>
+      <div class="kanban-col">
+        <div class="kanban-col-header">
+          <span class="kanban-col-title"><span class="kanban-dot dot-rejected"></span>Rejected</span>
+          <span class="kanban-count" id="k-rejected-count">0</span>
+        </div>
+        <div class="kanban-cards" id="k-rejected"></div>
+      </div>
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <!-- Scripts — order matters -->
+  <script src="script/storage.js"></script>
+  <script src="script/toast.js"></script>
+  <script src="script/deadline.js"></script>
+  <script src="script/app.js"></script>
+</body>
+</html>

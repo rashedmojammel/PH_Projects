@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Basic",
+    "price": 1500,
+    "features": ["Gym access", "Locker", "1 assessment"]
+  },
+  {
+    "name": "Standard",
+    "price": 3000,
+    "features": ["Trainer", "Diet plan", "Classes"]
+  },
+  {
+    "name": "Premium",
+    "price": 5000,
+    "features": ["Unlimited trainer", "Sauna", "Priority support"]
+  }
+]

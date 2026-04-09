@@ -1,0 +1,208 @@
+/* ============================================================
+   BASE.CSS — Variables, Reset, Typography, Shared Components
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+
+/* ── Variables ── */
+:root {
+  --bg:           #f5f3ef;
+  --surface:      #ffffff;
+  --surface2:     #edeae3;
+  --border:       #ddd9d0;
+  --text:         #1a1814;
+  --text-muted:   #7a7670;
+  --accent:       #2d5be3;
+  --accent-light: #dce6ff;
+  --green:        #16a34a;
+  --green-light:  #dcfce7;
+  --red:          #dc2626;
+  --red-light:    #fee2e2;
+  --amber:        #d97706;
+  --amber-light:  #fef3c7;
+  --shadow:       0 2px 12px rgba(0,0,0,.08);
+  --shadow-lg:    0 8px 32px rgba(0,0,0,.14);
+  --radius:       12px;
+  --ease:         cubic-bezier(.4,0,.2,1);
+  --t:            .25s;
+}
+
+[data-theme="dark"] {
+  --bg:           #0f0e0c;
+  --surface:      #1c1b18;
+  --surface2:     #252420;
+  --border:       #333028;
+  --text:         #f0ede6;
+  --text-muted:   #857f74;
+  --accent:       #5b82f5;
+  --accent-light: #1a2547;
+  --green-light:  #0d2e1a;
+  --red-light:    #2e0d0d;
+  --amber-light:  #2e1e06;
+  --shadow:       0 2px 12px rgba(0,0,0,.4);
+  --shadow-lg:    0 8px 36px rgba(0,0,0,.55);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--t) var(--ease), color var(--t) var(--ease);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+input, textarea, select { font-family: inherit; }
+
+/* ── Typography ── */
+.font-display { font-family: 'Syne', sans-serif; }
+
+/* ── Shared Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 20px;
+  border-radius: 8px; border: none;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  transition: all var(--t) var(--ease);
+  white-space: nowrap;
+}
+.btn-primary  { background: var(--text); color: var(--bg); }
+.btn-primary:hover { opacity: .85; transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn-ghost    { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--border); }
+.btn-danger   { background: var(--red-light); color: var(--red); border: 1px solid var(--red); }
+.btn-danger:hover { background: var(--red); color: #fff; }
+.btn-accent   { background: var(--accent); color: #fff; }
+.btn-accent:hover { opacity: .88; transform: translateY(-1px); }
+.btn-icon     { width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 8px; }
+.btn-sm       { padding: 7px 14px; font-size: 13px; }
+
+/* ── Form Elements ── */
+.form-group  { margin-bottom: 18px; }
+.form-label  { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 10px 14px;
+  border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface2);
+  font-size: 14px; color: var(--text);
+  outline: none;
+  transition: border var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+.form-textarea  { resize: vertical; min-height: 80px; line-height: 1.5; }
+.form-select option { background: var(--surface); }
+.form-row       { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-error     { font-size: 12px; color: var(--red); margin-top: 4px; display: none; }
+.form-error.show { display: block; }
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px; border-radius: 99px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.badge-pending   { background: var(--surface2); color: var(--text-muted); }
+.badge-interview { background: var(--green-light); color: var(--green); }
+.badge-rejected  { background: var(--red-light); color: var(--red); }
+.badge-overdue   { background: var(--red-light); color: var(--red); }
+.badge-due-soon  { background: var(--amber-light); color: var(--amber); }
+
+/* ── Toast ── */
+#toast-container {
+  position: fixed; top: 20px; right: 20px;
+  z-index: 9999;
+  display: flex; flex-direction: column; gap: 10px;
+  pointer-events: none;
+}
+.toast {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  font-size: 14px; font-weight: 500; color: var(--text);
+  max-width: 320px;
+  animation: toastIn .3s var(--ease) forwards;
+  pointer-events: all;
+  cursor: pointer;
+}
+.toast.hide { animation: toastOut .3s var(--ease) forwards; }
+.toast-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.toast.success .toast-dot { background: var(--green); }
+.toast.error   .toast-dot { background: var(--red); }
+.toast.info    .toast-dot { background: var(--accent); }
+.toast.warning .toast-dot { background: var(--amber); }
+
+@keyframes toastIn  { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes toastOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(110%); opacity: 0; } }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--t) var(--ease);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 100%; max-width: 520px;
+  padding: 32px;
+  transform: translateY(20px);
+  transition: transform var(--t) var(--ease);
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.modal-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
+.modal-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--t) var(--ease);
+}
+.modal-close:hover { background: var(--surface2); color: var(--text); }
+.modal-footer { display: flex; gap: 10px; margin-top: 24px; justify-content: flex-end; }
+
+/* ── Utility ── */
+.hidden      { display: none !important; }
+.text-muted  { color: var(--text-muted); }
+.text-green  { color: var(--green); }
+.text-red    { color: var(--red); }
+.text-amber  { color: var(--amber); }
+
+/* ── Page fade-in ── */
+@keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.page-enter { animation: pageFade .4s var(--ease) forwards; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+}
