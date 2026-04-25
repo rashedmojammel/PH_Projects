@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Design landing page wireframe",
+    "description": "Create a low-fidelity mockup for the new product site.",
+    "status": "In Progress",
+    "priority": "High",
+    "due_date": "2026-04-22"
+  },
+  {
+    "id": 2,
+    "title": "Quarterly budget review",
+    "description": "Analyze Q1 spending and forecast for Q2.",
+    "status": "To Do",
+    "priority": "Medium",
+    "due_date": "2026-04-25"
+  },
+  {
+    "id": 3,
+    "title": "Update API documentation",
+    "description": "Document the new endpoints for the v3 release.",
+    "status": "Completed",
+    "priority": "Low",
+    "due_date": "2026-04-18"
+  },
+  {
+    "id": 4,
+    "title": "Team sync meeting",
+    "description": "Weekly alignment on sprint goals and blockers.",
+    "status": "To Do",
+    "priority": "Medium",
+    "due_date": "2026-04-21"
+  },
+  {
+    "id": 5,
+    "title": "Fix login authentication bug",
+    "description": "Resolve the issue where OAuth fails on mobile devices.",
+    "status": "In Progress",
+    "priority": "High",
+    "due_date": "2026-04-20"
+  },
+  {
+    "id": 6,
+    "title": "Research competitor features",
+    "description": "Gather data on top 3 competitors for market analysis.",
+    "status": "To Do",
+    "priority": "Low",
+    "due_date": "2026-04-30"
+  },
+  {
+    "id": 7,
+    "title": "Optimize database queries",
+    "description": "Refactor slow-running SQL queries in the reporting module.",
+    "status": "In Progress",
+    "priority": "High",
+    "due_date": "2026-04-24"
+  },
+  {
+    "id": 8,
+    "title": "Draft monthly newsletter",
+    "description": "Write copy for the customer update email.",
+    "status": "To Do",
+    "priority": "Medium",
+    "due_date": "2026-04-28"
+  },
+  {
+    "id": 9,
+    "title": "Hardware inventory check",
+    "description": "Audit office laptops and peripherals.",
+    "status": "Completed",
+    "priority": "Low",
+    "due_date": "2026-04-15"
+  },
+  {
+    "id": 10,
+    "title": "Security patch deployment",
+    "description": "Apply critical security updates to production servers.",
+    "status": "To Do",
+    "priority": "High",
+    "due_date": "2026-04-21"
+  }
+]
